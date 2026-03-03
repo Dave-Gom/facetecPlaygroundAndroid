@@ -20,6 +20,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.facetec.sdk.FaceTecInitializationError;
 import com.facetec.sdk.FaceTecSDK;
 import com.facetec.sdk.FaceTecSDKInstance;
+import com.facetec.sdk.FaceTecSessionResult;
+import com.facetec.sdk.FaceTecSessionStatus;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -112,6 +114,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Log.d("FaceTec Prueba", requestCode + " - " + resultCode);
+        // Obtener el resultado del liveness check
+        if (requestCode == FaceTecSDK.REQUEST_CODE_SESSION) {
+            FaceTecSessionResult result = FaceTecSDK.getActivitySessionResult(requestCode, resultCode, data);
 
+            if (result != null) {
+                FaceTecSessionStatus status = result.getStatus();
+
+                if (status == FaceTecSessionStatus.SESSION_COMPLETED) {
+                    Log.d("FaceTec Prueba", "Liveness check exitoso!");
+                    // Aquí puedes manejar el éxito
+                } else {
+                    Log.d("FaceTec", "Status: " + status.name());
+                    // Manejar otros estados: USER_CANCELLED, TIMEOUT, etc.
+                }
+            }
+        }
     }
 }

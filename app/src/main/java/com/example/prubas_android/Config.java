@@ -15,7 +15,7 @@ public class Config {
     // REQUIRED
     // Available at https://dev.facetec.com/account
     // NOTE: This field is auto-populated by the FaceTec SDK Configuration Wizard.
-    public static String DeviceKeyIdentifier = "";
+    public static String DeviceKeyIdentifier = "duPBTVmH4QaD5XJxtewGAxIGapPaYBr7";
 
     // -------------------------------------
     // REQUIRED
